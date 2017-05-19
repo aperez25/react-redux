@@ -14487,18 +14487,6 @@ var _initialState = __webpack_require__(169);
 
 var _initialState2 = _interopRequireDefault(_initialState);
 
-var _audio = __webpack_require__(159);
-
-var _audio2 = _interopRequireDefault(_audio);
-
-var _Albums = __webpack_require__(82);
-
-var _Albums2 = _interopRequireDefault(_Albums);
-
-var _Album = __webpack_require__(81);
-
-var _Album2 = _interopRequireDefault(_Album);
-
 var _Sidebar = __webpack_require__(166);
 
 var _Sidebar2 = _interopRequireDefault(_Sidebar);
@@ -14518,6 +14506,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import Albums from '../components/Albums.js';
+// import Album from '../components/Album';
+
 
 var AppContainer = function (_Component) {
   _inherits(AppContainer, _Component);
@@ -14535,7 +14526,7 @@ var AppContainer = function (_Component) {
       playlists: [],
       artists: [],
       selectArtist: {}
-    }, _store2.default.getState());
+    }, _initialState2.default, _store2.default.getState());
 
     _this.toggle = _this.toggle.bind(_this);
     _this.toggleOne = _this.toggleOne.bind(_this);
@@ -14576,7 +14567,7 @@ var AppContainer = function (_Component) {
   }, {
     key: 'play',
     value: function play() {
-      _store2.default.dispatch((0, _player.play)());
+      _store2.default.dispatch(this.play());
     }
   }, {
     key: 'pause',
@@ -15786,6 +15777,14 @@ exports.prev = exports.next = exports.toggleOne = exports.toggle = exports.start
 
 var _constants = __webpack_require__(33);
 
+var _audio = __webpack_require__(159);
+
+var _audio2 = _interopRequireDefault(_audio);
+
+var _utils = __webpack_require__(173);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var startPlaying = exports.startPlaying = function startPlaying() {
@@ -15812,22 +15811,22 @@ var setCurrentSongList = exports.setCurrentSongList = function setCurrentSongLis
 
 var play = exports.play = function play() {
   return function (dispatch) {
-    AUDIO.play();
+    _audio2.default.play();
     dispatch(startPlaying());
   };
 };
 
 var pause = exports.pause = function pause() {
   return function (dispatch) {
-    AUDIO.pause();
+    _audio2.default.pause();
     dispatch(stopPlaying());
   };
 };
 
 var load = exports.load = function load(currentSong, currentSongList) {
   return function (dispatch) {
-    AUDIO.src = currentSong.audioUrl;
-    AUDIO.load();
+    _audio2.default.src = currentSong.audioUrl;
+    _audio2.default.load();
     dispatch(setCurrentSongList(currentSongList));
     dispatch(setCurrentSong(currentSong));
   };
@@ -15859,13 +15858,13 @@ var toggleOne = exports.toggleOne = function toggleOne(selectedSong, selectedSon
 
 var next = exports.next = function next() {
   return function (dispatch, getState) {
-    dispatch(startSong.apply(undefined, _toConsumableArray(skip(1, getState().player))));
+    dispatch(startSong.apply(undefined, _toConsumableArray((0, _utils.skip)(1, getState().player))));
   };
 };
 
 var prev = exports.prev = function prev() {
   return function (dispatch, getState) {
-    dispatch(startSong.apply(undefined, _toConsumableArray(skip(-1, getState().player))));
+    dispatch(startSong.apply(undefined, _toConsumableArray((0, _utils.skip)(-1, getState().player))));
   };
 };
 

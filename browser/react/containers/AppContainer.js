@@ -3,19 +3,15 @@ import axios from 'axios';
 import { hashHistory } from 'react-router';
 import { play, pause, load, startSong, toggle, toggleOne, next, prev } from '../action-creators/player';
 import store from '../store';
-
 import initialState from '../initialState';
-import AUDIO from '../audio';
-
-import Albums from '../components/Albums.js';
-import Album from '../components/Album';
+// import Albums from '../components/Albums.js';
+// import Album from '../components/Album';
 import Sidebar from '../components/Sidebar';
 import Player from '../components/Player';
 
-import { convertAlbum, convertAlbums, convertSong, skip } from '../utils';
+import { convertAlbum, convertAlbums, convertSong } from '../utils';
 
 export default class AppContainer extends Component {
-
   constructor () {
     super();
     this.state = Object.assign({
@@ -26,7 +22,7 @@ export default class AppContainer extends Component {
       playlists: [],
       artists: [],
       selectArtist: {}
-    }, store.getState())
+    }, initialState, store.getState())
 
     this.toggle = this.toggle.bind(this);
     this.toggleOne = this.toggleOne.bind(this);
@@ -41,6 +37,7 @@ export default class AppContainer extends Component {
   }
 
   componentDidMount () {
+
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState());
     })
@@ -59,7 +56,7 @@ export default class AppContainer extends Component {
   }
 
   play () {
-    store.dispatch(play());
+    store.dispatch(this.play());
   }
 
   pause () {
