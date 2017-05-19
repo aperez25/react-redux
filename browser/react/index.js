@@ -35,17 +35,17 @@ ReactDOM.render(
 );
 
 
-console.log('-------------------------');
-console.log('State before any actions: ', store.getState());
+// console.log('-------------------------');
+// console.log('State before any actions: ', store.getState());
 
-const inTheAirTonightAction = setLyrics('I can feel it coming in the air tonight ... hold on ...');
-store.dispatch(inTheAirTonightAction);
+// const inTheAirTonightAction = setLyrics('I can feel it coming in the air tonight ... hold on ...');
+// store.dispatch(inTheAirTonightAction);
 
-console.log('-------------------------');
-console.log('State after first SET_LYRICS action: ', store.getState());
+// console.log('-------------------------');
+// console.log('State after first SET_LYRICS action: ', store.getState());
 
-const rickRollAction = setLyrics('Never gonna give you up, never gonna let you down');
-store.dispatch(rickRollAction);
+// const rickRollAction = setLyrics('Never gonna give you up, never gonna let you down');
+// store.dispatch(rickRollAction);
 
-console.log('-------------------------');
-console.log('State after second SET_LYRICS action: ', store.getState());
+// console.log('-------------------------');
+// console.log('State after second SET_LYRICS action: ', store.getState());

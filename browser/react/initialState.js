@@ -1,15 +1,16 @@
 const initialState = {
   albums: [],
-  artists: [],
+  // artists: [],
   selectedAlbum: {},
-  selectedArtist: {},
-  currentSong: {},
-  currentSongList: [],
-  isPlaying: false,
-  progress: 0,
+  // selectedArtist: {},
+  // currentSong: {},
+  // currentSongList: [],
+  // isPlaying: false,
+  // progress: 0,
   playlists: [],
   selectedPlaylist: {},
   songs: []
+
 };
 
 export default initialState;

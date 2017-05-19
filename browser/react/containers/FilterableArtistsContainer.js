@@ -1,15 +1,15 @@
 import React from 'react';
 import FilterInput from '../components/FilterInput';
 import Artists from '../components/Artists';
+import store from '../store';
 
 class FilterableArtistsContainer extends React.Component {
 
   constructor (props) {
     super(props);
-    this.state = {
+    this.state = Object.assign({
       inputValue: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
+    }, store.getState());
   }
 
   handleChange (evt) {
@@ -20,7 +20,7 @@ class FilterableArtistsContainer extends React.Component {
   }
 
   render () {
-
+    console.log(this.props);
     const inputValue = this.state.inputValue;
     const filteredArtists = this.props.artists.filter(artist =>
       artist.name.match(inputValue));

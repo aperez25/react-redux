@@ -1,43 +1,60 @@
-import React from 'react';
-import store from '../store';
-// import { incrementCounter } from '../action-creators';
+import React, {Component} from 'react';
 import Lyrics from '../components/Lyrics';
+import axios from 'axios';
 
+import { fetchLyrics } from '../action-creators/lyrics';
+import store from '../store';
 
+export default class extends Component {
 
-// Stopped at handling input section
-// https://learn.fullstackacademy.com/workshop/581353d9b659df00039f518d/content/583de3d52a0bab0004c14b90/text
+  constructor() {
 
-class LyricsContainer extends React.Component {
+    super();
 
-  constructor(props) {
-    super(props);
-    this.state = store.getState();
+    this.state = Object.assign({
+      artistQuery: '',
+      songQuery: ''
+    }, store.getState());
+
+    this.handleArtistInput = this.handleArtistInput.bind(this);
+    this.handleSongInput = this.handleSongInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState());
     });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unsubscribe();
   }
 
-  // increment() {
-  //   store.dispatch(incrementCounter());
-  // }
+  handleArtistInput(artist) {
+    this.setState({ artistQuery: artist });
+  }
+
+  handleSongInput(song) {
+    this.setState({ songQuery: song });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    if (this.state.artistQuery && this.state.songQuery) {
+      store.dispatch(fetchLyrics(this.state.artistQuery, this.state.songQuery));
+    }
+  }
 
   render() {
-    const {counter} = this.state;
-    return (
-      <div>
-        <h1>Just a container for now!</h1>
-        <Lyrics counter={counter} increment={this.increment} />
-      </div>
-    );
+    return (<Lyrics
+      text={this.state.lyrics.text}
+      setArtist={this.handleArtistInput}
+      setSong={this.handleSongInput}
+      artistQuery={this.state.artistQuery}
+      songQuery={this.state.songQuery}
+      handleSubmit={this.handleSubmit}
+    />)
   }
-}
 
-export default LyricsContainer;
+}

@@ -1,7 +1,6 @@
 import React from 'react';
 import LyricsContainer from '../containers/LyricsContainer';
 
-
  const Lyrics = (props) => {
 
   const artistChange = e => {
@@ -16,8 +15,8 @@ import LyricsContainer from '../containers/LyricsContainer';
     <div id="lyrics">
       <form onSubmit={props.handleSubmit}>
         <div>
-          <input type="text" value={props.artistQuery} placeholder="Artist" onChange={artistChange}/>
-          <input type="text" value={props.songQuery} placeholder="Song" onChange={songChange}/>
+          <input type="text" value={props.artistQuery} placeholder="Artist" onChange={artistChange} />
+          <input type="text" value={props.songQuery} placeholder="Song" onChange={songChange} />
         </div>
         <pre>{props.text || 'Search above!'}</pre>
         <button type="submit">Search for Lyrics</button>
