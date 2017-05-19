@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import Lyrics from '../components/Lyrics';
-import axios from 'axios';
 
 import { fetchLyrics } from '../action-creators/lyrics';
 import store from '../store';
 
 export default class extends Component {
-
   constructor() {
-
     super();
-
     this.state = Object.assign({
       artistQuery: '',
       songQuery: ''
