@@ -14567,7 +14567,7 @@ var AppContainer = function (_Component) {
   }, {
     key: 'play',
     value: function play() {
-      _store2.default.dispatch(this.play());
+      _store2.default.dispatch((0, _player.play)());
     }
   }, {
     key: 'pause',

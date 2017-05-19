@@ -56,7 +56,7 @@ export default class AppContainer extends Component {
   }
 
   play () {
-    store.dispatch(this.play());
+    store.dispatch(play());
   }
 
   pause () {
